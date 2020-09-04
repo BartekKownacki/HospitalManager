@@ -14,7 +14,7 @@ namespace HospitalManager.App.Managers
         {
             _patientService = patientService;
         }
-        public void GetNewPatientData(LoginAction user)
+        public void GetNewPatientData(User user)
         {
             Patient patient = new Patient(user);
             patient.Id = _patientService.Items.Count + 1;
@@ -46,13 +46,16 @@ namespace HospitalManager.App.Managers
 
         public void Remove(int id)
         {
-            foreach (var patient in _patientService.Items)
-            {
-                if (patient.Id == id)
-                {
-                    _patientService.Remove(patient);
-                }
-            }
+            var patient = _patientService.GetById(id);
+            _patientService.Remove(patient);
         }
+
+        public Patient GetById(int id)
+        {
+            var patient = _patientService.GetById(id);
+            return patient;
+        }
+
+
     }
 }
