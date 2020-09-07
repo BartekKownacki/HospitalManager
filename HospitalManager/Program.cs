@@ -12,6 +12,7 @@ namespace HospitalManager
         static void Main(string[] args)
         {
             //TODO
+
             //Logowanie Lekarza
             ////1. Logowanie
             ////2. Rejestracja
@@ -36,9 +37,9 @@ namespace HospitalManager
             MenuActionService menuActionService = new MenuActionService();
             var loginMenu = menuActionService.GetMenuActionsByMenuName("Login");
 
-            LoginActionService loginActionService = new LoginActionService();
-            LoginActionManager loginActionManager = new LoginActionManager(loginActionService);
-            LoginAction user = new LoginAction();
+            UserService loginActionService = new UserService();
+            UserManager loginActionManager = new UserManager(loginActionService);
+            User user = new User();
             bool isAnOption = true;
 
             do

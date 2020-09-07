@@ -6,17 +6,17 @@ using System.Text;
 
 namespace HospitalManager.App.Managers
 {
-    public class LoginActionManager
+    public class UserManager
     {
-        private ILoginService<LoginAction> _LoginActionService;
-        public LoginActionManager(ILoginService<LoginAction> LoginActionService)
+        private IUserService _UserService;
+        public UserManager(IUserService UserService)
         {
-            _LoginActionService = LoginActionService;
+            _UserService = UserService;
         }
 
-        public LoginAction GetRegisterData(LoginAction user)
+        public User GetRegisterData(User user)
         {
-            user = new LoginAction();
+            user = new User();
 
             Console.Write("Please write your login: ");
             user.Login = Console.ReadLine();
@@ -24,19 +24,19 @@ namespace HospitalManager.App.Managers
             user.Password = Console.ReadLine();
             Console.Write("Please write your ID number: ");
             user.Id = Int32.Parse(Console.ReadLine());
-            _LoginActionService.Add(user);
+            _UserService.Add(user);
             user.IsLoggedIn = true;
             return user;
         }
 
-        public LoginAction GetLoginData(LoginAction user)
+        public User GetLoginData(User user)
         {
             Console.Write("Please write your login: ");
             user.Login = Console.ReadLine();
             Console.Write("Please write your password: ");
             user.Password = Console.ReadLine();
 
-            user = _LoginActionService.GetUser(user);
+            user = _UserService.GetUser(user);
             if (user.Id != 0)
             {
                 Console.WriteLine("You have successfully loggged in!");
@@ -50,6 +50,9 @@ namespace HospitalManager.App.Managers
             return user;
         }
 
-        
+        public User GetUser(User user)
+        {
+            return _UserService.GetUser(user);
+        }
     }
 }

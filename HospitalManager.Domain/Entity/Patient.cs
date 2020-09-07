@@ -18,10 +18,19 @@ namespace HospitalManager.Domain.Entity
             CreatedById = 0;
             CreatedDateTime = DateTime.Now;
         }
-        public Patient(LoginAction user)
+        public Patient(User user)
         {
             CreatedById = user.Id;
             CreatedDateTime = DateTime.Now;
+        }
+        public Patient(int id, string firstName, string lastName, string pesel, int phoneNumber, string emailAdress)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            PESEL = pesel;
+            PhoneNumber = phoneNumber;
+            EmailAdress = emailAdress;
         }
     }
 }
