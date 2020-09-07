@@ -3,6 +3,7 @@ using HospitalManager.App.Concrete;
 using HospitalManager.Domain.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HospitalManager.App.Managers
@@ -14,7 +15,7 @@ namespace HospitalManager.App.Managers
         {
             _patientService = patientService;
         }
-        public void GetNewPatientData(LoginAction user)
+        public void GetNewPatientData(User user)
         {
             Patient patient = new Patient(user);
             patient.Id = _patientService.Items.Count + 1;
@@ -32,27 +33,22 @@ namespace HospitalManager.App.Managers
             _patientService.Add(patient);
         }
 
+        public Patient GetById(int id)
+        {
+            var entity = _patientService.GetById(id);
+            return entity;
+        }
 
         public void Remove(string pesel)
         {
-            foreach (var patient in _patientService.Items)
-            {
-                if (patient.PESEL == pesel)
-                {
-                    _patientService.Remove(patient);
-                }
-            }
+            var entity = _patientService.Items.FirstOrDefault(p => p.PESEL == pesel);
+            _patientService.Remove(entity);
         }
 
         public void Remove(int id)
         {
-            foreach (var patient in _patientService.Items)
-            {
-                if (patient.Id == id)
-                {
-                    _patientService.Remove(patient);
-                }
-            }
+            var entity = _patientService.Items.FirstOrDefault(p => p.Id == id);
+            _patientService.Remove(entity);
         }
     }
 }

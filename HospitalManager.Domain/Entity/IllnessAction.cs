@@ -7,7 +7,7 @@ namespace HospitalManager.Domain.Entity
 {
     public class IllnessAction : BaseEntity
     {
-        public Patient patient { get; set; }
+        public Patient Patient { get; set; }
         public string NameOfIllness { get; set; }
         public DateTime DateOfVisit { get; set; }
         public string Symptoms { get; set; }
@@ -16,9 +16,9 @@ namespace HospitalManager.Domain.Entity
         public List<string> PrescriptedMedicines { get; set; }
         public DateTime DateOfControlVisit { get; set; }
 
-        public IllnessAction(LoginAction user, Patient patientToAdd, IllnessAction illnessActionWithoutUser)
+        public IllnessAction(User user, Patient patientToAdd, IllnessAction illnessActionWithoutUser)
         {
-            patient = patientToAdd;
+            Patient = patientToAdd;
 
             NameOfIllness = illnessActionWithoutUser.NameOfIllness;
             DateOfVisit = illnessActionWithoutUser.DateOfVisit;
@@ -31,7 +31,11 @@ namespace HospitalManager.Domain.Entity
             CreatedById = user.Id;
             CreatedDateTime = DateTime.Now;
         }
-        
+        public IllnessAction(Patient patientToAdd, string nameofillness, DateTime dateofvisit, string symptops, CategoryOfIllness category, int illnessLevel, string medicine, DateTime dateofnextvisit)
+        {
+            Patient = patientToAdd;
+
+        }
         public IllnessAction()
         {
 

@@ -40,7 +40,7 @@ namespace HospitalManager.Tests
 
             var manager = new PatientManager(patientService);
             //Act
-            manager.Remove(patient.Id);
+            manager.Remove(patient.PESEL);
             //Assert
             patientService.GetAll().Count.Should().Equals(0);
         }
@@ -50,17 +50,14 @@ namespace HospitalManager.Tests
         {
             //Arrange
             Patient patient = new Patient(1, "aaa", "bbb", "ccc", 123, "ddd");
-            var mock = new Mock<IService<Patient>>();
-            mock.Setup(m => m.GetById(patient.Id)).Returns(patient);
-            mock.Setup(m => m.Remove(It.IsAny<Patient>()));
+            IService<Patient> patientService = new PatientService();
+            patientService.Add(patient);
 
-            var manager = new PatientManager(mock.Object);
-
+            var manager = new PatientManager(patientService);
             //Act
             manager.Remove(patient.Id);
-
             //Assert
-            mock.Verify(m => m.Remove(patient));
+            patientService.GetAll().Count.Should().Equals(0);
         }
     }
 }

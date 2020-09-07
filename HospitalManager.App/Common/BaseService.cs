@@ -3,6 +3,7 @@ using HospitalManager.Domain.Common;
 using HospitalManager.Domain.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HospitalManager.App.Common
@@ -27,6 +28,12 @@ namespace HospitalManager.App.Common
         public void Remove(T item)
         {
             Items.Remove(item);
+        }
+
+        public T GetById(int id)
+        {
+            var entity = Items.FirstOrDefault(p => p.Id == id);
+            return entity;
         }
     }
 }

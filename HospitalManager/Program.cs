@@ -36,9 +36,9 @@ namespace HospitalManager
             MenuActionService menuActionService = new MenuActionService();
             var loginMenu = menuActionService.GetMenuActionsByMenuName("Login");
 
-            LoginActionService loginActionService = new LoginActionService();
-            LoginActionManager loginActionManager = new LoginActionManager(loginActionService);
-            LoginAction user = new LoginAction();
+            UserService userService = new UserService();
+            UserManager userManager = new UserManager(userService);
+            User user = new User();
             bool isAnOption = true;
 
             do
@@ -56,13 +56,13 @@ namespace HospitalManager
                         case '1':
                             Console.Clear();
                             Console.WriteLine($"===Log in===");
-                            user = loginActionManager.GetLoginData(user);
+                            user = userManager.GetLoginData(user);
                             ConsoleActions.ShowWaitingDots();
                             break;
                         case '2':
                             Console.Clear();
                             Console.WriteLine($"===Register===");
-                            user = loginActionManager.GetRegisterData(user);
+                            user = userManager.GetRegisterData(user);
                             Console.WriteLine($"You have successfully registered! Your ID number is: {user.Id}");
                             ConsoleActions.ShowWaitingDots();
                             break;

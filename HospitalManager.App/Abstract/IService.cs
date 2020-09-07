@@ -13,5 +13,6 @@ namespace HospitalManager.App.Abstract
 
         void Add(T item);
         void Remove(T item);
+        T GetById(int id);
     }
 }

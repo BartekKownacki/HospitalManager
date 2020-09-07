@@ -16,7 +16,7 @@ namespace HospitalManager.App.Managers
             _illnessActionService = illnessActionService;
         }
 
-        public void GetPatientAndIllnessData(LoginAction user, PatientService patients)
+        public void GetPatientAndIllnessData(User user, PatientService patients)
         {
             string pesel;
             Patient patient = new Patient();
@@ -73,11 +73,11 @@ namespace HospitalManager.App.Managers
                             isAnOption = true;
                             break;
                         case '2':
-                            //ConsoleActions.ClearChosenNumberFromLine();
+                            ConsoleActions.ClearChosenNumberFromLine();
                             isAnOption = true;
                             break;
                         default:
-                            //ConsoleActions.ClearChosenNumberFromLine();
+                            ConsoleActions.ClearChosenNumberFromLine();
                             Console.WriteLine($"Theres no option \"{option.KeyChar}\". Please try again.");
                             break;
                     }
