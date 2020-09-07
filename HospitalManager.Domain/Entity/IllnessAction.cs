@@ -11,12 +11,12 @@ namespace HospitalManager.Domain.Entity
         public string NameOfIllness { get; set; }
         public DateTime DateOfVisit { get; set; }
         public string Symptoms { get; set; }
-        public CategoryOfIllness Category { get; set; }
+        public CategoryOfIllness Category;
         public int IllnessLevel { get; set; }
         public List<string> PrescriptedMedicines { get; set; }
         public DateTime DateOfControlVisit { get; set; }
 
-        public IllnessAction(User user, Patient patientToAdd, IllnessAction illnessActionWithoutUser)
+        public IllnessAction(LoginAction user, Patient patientToAdd, IllnessAction illnessActionWithoutUser)
         {
             patient = patientToAdd;
 

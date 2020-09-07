@@ -4,6 +4,7 @@ using HospitalManager.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HospitalManager.Helpers;
 
 namespace HospitalManager.App.Managers
 {
@@ -15,7 +16,7 @@ namespace HospitalManager.App.Managers
             _illnessActionService = illnessActionService;
         }
 
-        public void GetPatientAndIllnessData(User user, PatientService patients)
+        public void GetPatientAndIllnessData(LoginAction user, PatientService patients)
         {
             string pesel;
             Patient patient = new Patient();
@@ -45,9 +46,7 @@ namespace HospitalManager.App.Managers
             }
             IllnessAction illnessAction = new IllnessAction();
             Console.Write("Please write number of an illness category: \n1. Infectious \n2. Cancer \n3. Chronic \n4. Civilization \n5. Psychic \n6. Genetic");
-            CategoryOfIllness category;
-            Enum.TryParse(Console.ReadLine(), out category);
-            illnessAction.Category = category;
+            Enum.TryParse(Console.ReadLine(), out illnessAction.Category);
             Console.Write("Please write name of the illness: ");
             illnessAction.NameOfIllness = Console.ReadLine();
             Console.Write("Please write symptoms of the illness: ");
@@ -69,7 +68,7 @@ namespace HospitalManager.App.Managers
                     switch (option.KeyChar)
                     {
                         case '1':
-                            //ConsoleActions.ClearChosenNumberFromLine();
+                            ConsoleActions.ClearChosenNumberFromLine();
                             stop = true;
                             isAnOption = true;
                             break;
