@@ -5,13 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using HospitalManager.Helpers;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace HospitalManager.App.Managers
 {
+    
     public class IllnessActionManager
     {
-        private IService<IllnessAction> _illnessActionService;
-        public IllnessActionManager(IService<IllnessAction> illnessActionService)
+        private IllnessActionService _illnessActionService;
+        public IllnessActionManager(IllnessActionService illnessActionService)
         {
             _illnessActionService = illnessActionService;
         }
@@ -51,7 +54,7 @@ namespace HospitalManager.App.Managers
             illnessAction.NameOfIllness = Console.ReadLine();
             Console.Write("Please write symptoms of the illness: ");
             illnessAction.Symptoms = Console.ReadLine();
-            Console.Write("Please write a stage of the illness: ");
+            Console.Write("Please write a level of the illness: ");
             illnessAction.IllnessLevel = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Please write prescripted medicines: ");
             bool stop = false;
@@ -95,6 +98,23 @@ namespace HospitalManager.App.Managers
             Console.WriteLine("Illness added successfully!");
 
         }
+
+        public List<IllnessAction> GetInfoToSerializeCSV(int id)
+        {
+            List<IllnessAction> allIllnessToSerialize = new List<IllnessAction>();
+            allIllnessToSerialize = _illnessActionService.GetAllByInfo(id);
+
+            return allIllnessToSerialize;
+        }
+
+        public List<IllnessAction> GetInfoToSerializeCSV(string pesel)
+        {
+            List<IllnessAction> allIllnessToSerialize = new List<IllnessAction>();
+            allIllnessToSerialize = _illnessActionService.GetAllByInfo(pesel);
+
+            return allIllnessToSerialize;
+        }
+
 
     }
 }

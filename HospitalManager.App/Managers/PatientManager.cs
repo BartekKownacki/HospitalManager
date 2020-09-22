@@ -38,7 +38,11 @@ namespace HospitalManager.App.Managers
             var entity = _patientService.GetById(id);
             return entity;
         }
-
+        public Patient GetByPesel(string pesel)
+        {
+            var entity = _patientService.Items.FirstOrDefault(p => p.PESEL == pesel);
+            return entity;
+        }
         public void Remove(string pesel)
         {
             var entity = _patientService.Items.FirstOrDefault(p => p.PESEL == pesel);

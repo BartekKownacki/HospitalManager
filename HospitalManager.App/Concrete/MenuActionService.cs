@@ -38,9 +38,10 @@ namespace HospitalManager.App.Concrete
             Add(new MenuAction(2, "Add new patient", "mainMenu"));
             Add(new MenuAction(3, "Remove patient", "mainMenu"));
             Add(new MenuAction(4, "Add new illness to patient", "mainMenu"));
-            Add(new MenuAction(5, "Generate prescription for patient (txt file)", "mainMenu"));
-            Add(new MenuAction(6, "Sign out", "mainMenu"));
-            Add(new MenuAction(7, "Press 'q' to quit", "mainMenu"));
+            Add(new MenuAction(5, "Generate prescription for patient (csv file)", "mainMenu"));
+            Add(new MenuAction(6, "Read prescription from file (csv file)", "mainMenu"));
+            Add(new MenuAction(7, "Sign out", "mainMenu"));
+            Add(new MenuAction(8, "Press 'q' to quit", "mainMenu"));
         }
 
     }
